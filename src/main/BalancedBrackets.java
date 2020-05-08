@@ -23,13 +23,19 @@ public class BalancedBrackets {
      */
     public static boolean hasBalancedBrackets(String str) {
         int brackets = 0;
+        Boolean bracketsClosed = true;
+
         for (char ch : str.toCharArray()) {
             if (ch == '[') {
                 brackets++;
-            } else if (ch == ']') {
+                bracketsClosed = false;
+            } else if (ch == ']' && bracketsClosed == false) {
                 brackets--;
+                bracketsClosed = true;
             }
         }
         return brackets == 0;
     }
 }
+// visible flaws
+//math doesn't actually require sequential opens and closes, only equal numbers of them
